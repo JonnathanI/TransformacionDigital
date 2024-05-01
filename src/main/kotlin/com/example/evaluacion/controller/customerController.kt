@@ -30,4 +30,13 @@ fun list():List<Customer>{
     fun updateName(@RequestBody customer: Customer): ResponseEntity<Customer> {
         return ResponseEntity( customerService.updateName(customer), HttpStatus.OK)
     }
+
+
+    @DeleteMapping("/{id}")
+    fun delete(@PathVariable id: Long): ResponseEntity<String> {
+        customerService.delete(id)
+        return ResponseEntity("Cliente eliminado correctamente", HttpStatus.OK)
+    }
+
+
 }

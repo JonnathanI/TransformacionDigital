@@ -47,4 +47,15 @@ lateinit var customerRepository: customerRepository
         }
     }
 
+    fun delete(id: Long) {
+        try {
+            val customer = customerRepository.findById(id).orElseThrow { throw ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente no encontrado con ID: $id") }
+            customerRepository.delete(customer)
+        } catch (ex: Exception) {
+            throw ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error al eliminar el cliente", ex)
+        }
+    }
+
+
+
 }
